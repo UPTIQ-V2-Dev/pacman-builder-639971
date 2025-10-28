@@ -1,0 +1,53 @@
+#!/bin/bash
+# pnpm wrapper script - fallback to npm if pnpm is not available
+
+# Function to check if command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Try to use actual pnpm first
+if command_exists pnpm; then
+    exec pnpm "$@"
+fi
+
+# Try to enable pnpm via corepack
+if command_exists corepack; then
+    echo "📦 Enabling pnpm via corepack..."
+    corepack enable >/dev/null 2>&1
+    corepack prepare pnpm@latest --activate >/dev/null 2>&1
+    
+    if command_exists pnpm; then
+        exec pnpm "$@"
+    fi
+fi
+
+# Fallback to npm with translated commands
+echo "⚠️  pnpm not available, falling back to npm..."
+
+case "$1" in
+    "install")
+        shift
+        npm install "$@"
+        ;;
+    "add")
+        shift
+        npm install "$@"
+        ;;
+    "run")
+        shift
+        npm run "$@"
+        ;;
+    "build")
+        npm run build
+        ;;
+    "dev")
+        npm run dev
+        ;;
+    "preview")
+        npm run preview
+        ;;
+    *)
+        npm "$@"
+        ;;
+esac

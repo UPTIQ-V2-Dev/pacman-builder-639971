@@ -14,7 +14,8 @@
         "test": "vitest",
         "test:ui": "vitest --ui",
         "test:ci": "vitest run",
-        "test:coverage": "vitest run --coverage"
+        "test:coverage": "vitest run --coverage",
+        "setup": "node install-deps.js"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.1.1",

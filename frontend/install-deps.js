@@ -31,9 +31,9 @@ function checkPnpm() {
 function installDependencies() {
   console.log('🚀 Starting dependency installation...');
   
-  // Remove lock files if they exist
-  const lockFiles = ['pnpm-lock.yaml', 'package-lock.json', 'yarn.lock'];
-  lockFiles.forEach(file => {
+  // Only remove conflicting lock files, keep package-lock.json
+  const lockFilesToRemove = ['pnpm-lock.yaml', 'yarn.lock'];
+  lockFilesToRemove.forEach(file => {
     if (fs.existsSync(path.join(__dirname, file))) {
       try {
         fs.unlinkSync(path.join(__dirname, file));
@@ -44,19 +44,8 @@ function installDependencies() {
     }
   });
   
-  // Try to enable corepack and install pnpm
-  console.log('🔧 Attempting to enable corepack and install pnpm...');
-  if (runCommand('corepack enable', 'Enable corepack')) {
-    if (runCommand('corepack prepare pnpm@latest --activate', 'Install pnpm via corepack')) {
-      if (checkPnpm()) {
-        console.log('✅ pnpm is now available');
-        return runCommand('pnpm install', 'Install dependencies with pnpm');
-      }
-    }
-  }
-  
-  // Fallback to npm if pnpm is not available
-  console.log('📦 pnpm not available, falling back to npm...');
+  // Use npm directly (no longer trying pnpm first)
+  console.log('📦 Using npm for dependency installation...');
   return runCommand('npm install', 'Install dependencies with npm');
 }
 
@@ -64,9 +53,10 @@ function installDependencies() {
 const success = installDependencies();
 
 if (success) {
-  console.log('🎉 Dependencies installed successfully!');
+  console.log('🎉 Dependencies installed successfully with npm!');
   process.exit(0);
 } else {
   console.error('💥 Failed to install dependencies');
+  console.error('💡 You can try running: npm install');
   process.exit(1);
 }

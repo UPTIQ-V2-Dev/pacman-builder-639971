@@ -1,0 +1,39 @@
+#!/bin/bash
+# pnpm compatibility wrapper - delegates to npm
+
+case "$1" in
+  "install")
+    npm install "${@:2}"
+    ;;
+  "add")
+    npm install "${@:2}"
+    ;;
+  "remove")
+    npm uninstall "${@:2}"
+    ;;
+  "db:generate")
+    npm run db:generate "${@:2}"
+    ;;
+  "typecheck") 
+    npm run typecheck "${@:2}"
+    ;;
+  "eslint")
+    npm run eslint "${@:2}"
+    ;;
+  "prettier")
+    npm run prettier "${@:2}"
+    ;;
+  "dev")
+    npm run dev "${@:2}"
+    ;;
+  "build")
+    npm run build "${@:2}"
+    ;;
+  "test")
+    npm run test "${@:2}"
+    ;;
+  *)
+    # For any other command, try to run it as npm run <command>
+    npm run "$@"
+    ;;
+esac

@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage';
 import { GamePage } from './pages/GamePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { HighScoresPage } from './pages/HighScoresPage';
+import { LoginPage } from './pages/LoginPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +21,7 @@ export const App = () => {
       <BrowserRouter>
         <div className="h-screen w-screen">
           <Routes>
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/game" element={<GamePage />} />
             <Route path="/settings" element={<SettingsPage />} />

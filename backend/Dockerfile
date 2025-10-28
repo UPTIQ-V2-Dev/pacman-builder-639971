@@ -23,7 +23,7 @@ USER node
 WORKDIR /app/project
 
 COPY package.json .
-COPY pnpm-lock.yaml .
+COPY pnpm-lock.yaml* .
 RUN pnpm install
 
 EXPOSE 3000

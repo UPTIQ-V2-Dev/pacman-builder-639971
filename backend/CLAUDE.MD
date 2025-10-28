@@ -25,9 +25,9 @@ This is a Node.js backend template providing a complete authentication system wi
 
 ### 1. Command Execution Restrictions
 
-- **NEVER** execute `pnpm build` under any circumstances
-- **NEVER** execute `pnpm db:migrate`, `pnpm db:push`, or any database migration commands
-- **NEVER** execute `pnpm db:seed` or any database seeding commands
+- **NEVER** execute `npm run build` under any circumstances
+- **NEVER** execute `npm run db:migrate`, `npm run db:push`, or any database migration commands
+- **NEVER** execute `npm run db:seed` or any database seeding commands
 - **NEVER** execute any build, deployment, or production-related commands
 
 ### 2. Database Migration Restrictions
@@ -45,8 +45,8 @@ This is a Node.js backend template providing a complete authentication system wi
 - **NEVER** add new scripts to `package.json`
 - **NEVER** modify existing scripts in `package.json`
 - **NEVER** create new command shortcuts or aliases
-- You MAY add or update dependencies ONLY using `pnpm add`, `pnpm remove`, or `pnpm install` commands
-- All package management must be done through pnpm commands, not manual file edits
+- You MAY add or update dependencies ONLY using `npm install`, `npm add`, or `npm remove` commands
+- All package management must be done through npm commands, not manual file edits
 
 ## Testing Structure
 
@@ -89,15 +89,15 @@ The application includes comprehensive testing capabilities:
 
 You are permitted to:
 
-- Run `pnpm db:generate` to generate Prisma client for type safety
-- Run `pnpm typecheck` to verify TypeScript compilation (ALWAYS run `pnpm db:generate` first)
-- Run `pnpm add`, `pnpm remove`, or `pnpm install` to manage dependencies
+- Run `npm run db:generate` to generate Prisma client for type safety
+- Run `npm run typecheck` to verify TypeScript compilation (ALWAYS run `npm run db:generate` first)
+- Run `npm install`, `npm add`, or `npm remove` to manage dependencies
 - Modify Prisma schema models in `prisma/schema.prisma` for database changes
 - Modify application source code (controllers, services, routes, etc.)
 - Modify configuration files (e.g., `.env`, TypeScript config)
 - Read and understand project files
 
-**Important**: Always run `pnpm db:generate` before running `pnpm typecheck` to ensure Prisma client is up-to-date.
+**Important**: Always run `npm run db:generate` before running `npm run typecheck` to ensure Prisma client is up-to-date.
 
 **Violation of these restrictions may cause system instability or deployment failures.**
 
@@ -109,7 +109,7 @@ You are permitted to:
 - **Framework**: Express.js 5.x
 - **Database**: PostgreSQL with Prisma ORM
 - **Authentication**: JWT with Passport.js
-- **Package Manager**: pnpm (v10.14.0)
+- **Package Manager**: npm
 
 ## Key Dependencies
 
@@ -183,20 +183,20 @@ await storageInstance.DownloadSignedUrl(
 
 ```bash
 # Development
-pnpm dev                    # Start development server with hot reload
+npm run dev                    # Start development server with hot reload
 
 # Type Safety (ALWAYS run db:generate before typecheck)
-pnpm db:generate           # Generate Prisma client
-pnpm typecheck             # Type check the code
+npm run db:generate           # Generate Prisma client
+npm run typecheck             # Type check the code
 ```
 
 **CRITICAL - STRICTLY PROHIBITED COMMANDS**:
 
-- **NEVER** run `pnpm build` - Build commands are strictly forbidden
-- **NEVER** run `pnpm db:migrate` or any migration commands - Migrations are managed externally
-- **NEVER** run `pnpm db:seed` or any seeding commands - Database seeding is prohibited
-- **ONLY** run `pnpm db:generate` to generate Prisma client for type safety
-- **ONLY** run `pnpm typecheck` to verify TypeScript types
+- **NEVER** run `npm run build` - Build commands are strictly forbidden
+- **NEVER** run `npm run db:migrate` or any migration commands - Migrations are managed externally
+- **NEVER** run `npm run db:seed` or any seeding commands - Database seeding is prohibited
+- **ONLY** run `npm run db:generate` to generate Prisma client for type safety
+- **ONLY** run `npm run typecheck` to verify TypeScript types
 
 ## Build Configuration
 

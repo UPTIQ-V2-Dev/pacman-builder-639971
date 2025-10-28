@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { GameLogo } from '../components/game/GameLogo';
 import { MenuButton } from '../components/ui/menu-button';
 import { InstructionsModal } from '../components/game/InstructionsModal';
-import { Play, Trophy, Settings, HelpCircle } from 'lucide-react';
+import { Play, Trophy, Settings, HelpCircle, LogIn, LogOut } from 'lucide-react';
+import { isAuthenticated, clearAuthData, getStoredUser } from '@/lib/api';
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const [showInstructions, setShowInstructions] = useState(false);
+  const authenticated = isAuthenticated();
+  const user = getStoredUser();
 
   const handleStartGame = () => {
     navigate('/game');
@@ -25,10 +28,25 @@ export const HomePage = () => {
     setShowInstructions(true);
   };
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
+  const handleLogout = () => {
+    clearAuthData();
+    window.location.reload(); // Refresh to update auth state
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         <GameLogo />
+        
+        {authenticated && user && (
+          <div className="text-center text-yellow-400 text-sm">
+            <p>Welcome back, {user.name || user.email}!</p>
+          </div>
+        )}
         
         <div className="space-y-4 flex flex-col items-center">
           <MenuButton 
@@ -66,6 +84,26 @@ export const HomePage = () => {
             <HelpCircle size={24} />
             HOW TO PLAY
           </MenuButton>
+          
+          {authenticated ? (
+            <MenuButton 
+              onClick={handleLogout}
+              variant="secondary"
+              className="flex items-center gap-3 bg-red-600 hover:bg-red-500 border-red-800"
+            >
+              <LogOut size={24} />
+              LOGOUT
+            </MenuButton>
+          ) : (
+            <MenuButton 
+              onClick={handleLogin}
+              variant="secondary"
+              className="flex items-center gap-3"
+            >
+              <LogIn size={24} />
+              LOGIN
+            </MenuButton>
+          )}
         </div>
         
         <div className="text-center text-gray-400 text-sm mt-8">

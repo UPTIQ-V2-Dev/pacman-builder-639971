@@ -5,6 +5,7 @@ A classic Pacman game built with React 19, TypeScript, and Vite.
 ## 🎮 Features
 
 - **Complete Pacman gameplay** with maze navigation
+- **User authentication** with login/logout functionality
 - **Responsive design** for desktop and mobile
 - **Score tracking** with persistent high scores
 - **Power pellets** with ghost vulnerability mode
@@ -14,7 +15,7 @@ A classic Pacman game built with React 19, TypeScript, and Vite.
 
 ## 🚀 Quick Start
 
-### Using npm (recommended)
+### Setup and Run
 
 ```bash
 # Install dependencies
@@ -30,17 +31,18 @@ npm run build
 npm run preview
 ```
 
-### Package Manager Transition
+### Alternative Setup
 
-This project has been converted from pnpm to npm for better compatibility. The following files have been updated:
+You can use the automated setup script for advanced dependency management:
 
-- `Dockerfile` - Now uses npm instead of pnpm
-- `entrypoint.preview.sh` - Updated all pnpm commands to npm
-- `package-lock.json` - Added npm lockfile
-- Removed `pnpm-lock.yaml`
+```bash
+# Automated dependency installation (tries pnpm, falls back to npm)
+npm run setup
+```
 
 ## 🎯 How to Play
 
+- **Login**: Access the login page to authenticate (demo: user@example.com / password)
 - **Movement**: Use arrow keys (↑↓←→) or WASD
 - **Pause**: Press SPACEBAR
 - **Objective**: Eat all pellets while avoiding ghosts
@@ -73,6 +75,7 @@ src/
 - `npm run eslint` - Run ESLint
 - `npm run prettier` - Format code
 - `npm run test` - Run tests
+- `npm run setup` - Automated dependency installation
 
 ## 🎨 Technology Stack
 

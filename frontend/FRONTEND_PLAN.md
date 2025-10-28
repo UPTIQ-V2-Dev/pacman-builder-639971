@@ -9,7 +9,28 @@
 
 ## Page Structure & Implementation Plan
 
-### 1. Home/Menu Page (`/`)
+### 1. Login Page (`/login`)
+**Components:**
+- `LoginForm` - Email/password login form with validation
+- `AuthCard` - Reusable auth container component
+- `LoadingSpinner` - Loading state indicator
+
+**Features:**
+- User authentication with email/password
+- Form validation with error handling
+- Remember me functionality
+- Redirect to home after successful login
+- Integration with existing auth service
+- Mock data support for development
+
+**API Endpoints:**
+- `POST /auth/login` - User authentication
+
+**Types:**
+- Uses existing `LoginRequest` and `AuthResponse` types
+- Form validation with proper error states
+
+### 2. Home/Menu Page (`/`)
 **Components:**
 - `GameMenu` - Main menu with play, settings, high scores buttons
 - `Logo` - Pacman game logo/title
